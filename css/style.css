@@ -1,0 +1,74 @@
+#movies img, #movie img{
+    width: 100%;
+
+}
+
+
+#movies .col-md-3 .well {
+    height: 500px;
+    padding-top: 50px;
+    padding-bottom: 50px;
+
+}
+
+#movies .col-md-3 img {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    height: 400px;
+    width: 266px;
+}
+
+
+body {
+    background-color: fffff;
+}
+
+.plot {
+    padding-left: 5px;
+    padding-top: 40px;
+    display: block;
+}
+
+.movieposter{
+    display: block;
+    box-shadow: 0 4px 10px 0 rgba(0, 0, 0, 0.9), 0 6px 40px 0 rgba(0, 0, 0, 0.6);
+}
+
+.buttons a{
+    margin-top: 40px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 70px 0 rgba(0, 0, 0, 0.19);
+
+}
+
+.movietitle {
+    font-size: 35px;
+    font-weight: 500;
+    padding-bottom: 15px;
+}
+
+.logo {
+    font-size: 25px;
+    padding-top: 20px;
+}
+
+.navbar {
+
+    margin-bottom: 20px;
+}
+
+.related {
+    padding-top: 20px;
+}
+
+.title {
+    padding-top: 20px;
+    text-align: center;
+}
+
+.col-md-3 {
+    padding-bottom: 50px;
+    text-align: center;
+}
+
+
+
+
