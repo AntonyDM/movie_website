@@ -1,8 +1,8 @@
 <?php
 function getConn() {
  $dbserver  = $_SERVER['SERVER_NAME']; 
- $dbusername = "root";
- $dbpassword = "";
+ $dbusername = "10ist";
+ $dbpassword = "password";
  $dbname = "studentdb";
  $conn = new mysqli($dbserver, $dbusername, $dbpassword, $dbname);
  // Check connection

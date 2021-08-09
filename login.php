@@ -56,8 +56,9 @@ IF ($method == "POST") {
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>Everything Cricket - Login</title>  									<!-- top of chrome tab bar -->
-		<link rel="stylesheet" href="css/everythingcricket.css">
+		<title>Movie Website - Login</title>  									<!-- top of chrome tab bar -->
+		<link rel="stylesheet" href="css/style.css">
+        <link rel="stylesheet" href="css/bootstrap.min.css">
 		<link href='https://fonts.googleapis.com/css?family=Secular One' rel='stylesheet'>
 		<link rel="icon" href="img/marnus.png">
 	
