@@ -1,4 +1,7 @@
 
+<?php
+require("sessionCheck.php");
+?>
 
 
 <html>
@@ -23,6 +26,7 @@
             <div id="movie" class="well"></div>
         </div>
 
+
         <div class="container">
             <div class="jumbotron">
                 <h3 class="text-center related">Related Movies</h3>
@@ -35,6 +39,7 @@
         <div class="container">
             <div id="movies" class="row"></div>
         </div>
+
 
 
 
