@@ -46,6 +46,36 @@ function getMovies(searchMovie) {
     });
 }
 
+function getMoviesGenre(searchMovieGenre) {
+    //axios.get('http://www.omdbapi.com?s='+ searchMovie+'&apikey=48d6917d')
+    axios
+        .get(
+            "https://api.themoviedb.org/3/search/movie?api_key=1350e4528ff8559ef2b0fa6679f97d84&language=en-US&query=" + searchMovie
+        )
+        .then((response) => {
+            console.log(response);
+            //puts the array of movies into the variable
+            let movies = response.data.results;
+            let output = "";
+            $.each(movies, (index, movie) => {
+                output += `
+                      <div class="col-md-3">
+                        <div class="well text-center">
+                          <img src="https://image.tmdb.org/t/p/w500${movie.poster_path}">
+                          <h5>${movie.title}</h5>
+                          <a onclick="movieSelected('${movie.id}')" class="btn btn-primary" href="#">Movie Details</a>
+                        </div>
+                      </div>
+                    `;
+            });
+            //prints the movies on the div with the class movies
+            $("#movies").html(output);
+        })
+        .catch((err) => {
+            console.log(err);
+        });
+}
+
 function movieSelected(id) {
   //Set to broswer storage
   sessionStorage.setItem("movieId", id);
@@ -89,7 +119,7 @@ function getMovie() {
                              </div>
                         </div>
                     </div>
-                    <br>
+                    
                     <br>
                     </div class="row">
                         <div class="well">

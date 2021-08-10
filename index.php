@@ -18,9 +18,8 @@
 
         <?php require("nav.php"); ?>
 
-        <div class="container">
-            <div id="movies" class="row"</div>
-        </div>
+
+
         <!--jquery-->
         <script
                 src="https://code.jquery.com/jquery-3.6.0.min.js"
@@ -29,7 +28,5 @@
         <!--axios npm-->
         <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
         <script src="js/main.js"></script>
-        <script>
-            getPopular();
-        </script>
+
     </body>

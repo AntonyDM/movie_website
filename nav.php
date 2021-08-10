@@ -11,17 +11,20 @@
                     <a class="nav-link active" href="index.php">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link active" href="#">Popular Movies</a>
+                    <a class="nav-link active" href="searchMovieTitle.php">Search Movie by Title</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link active" href="#">Search By Genre</a>
+                    <a class="nav-link active" href="searchMovieTitle.php">Search Movie by Genre</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link active" href="#">About</a>
+                    <a class="nav-link active" href="#">Search TV Show by Title</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" href="#">Search TV Show by Genre</a>
                 </li>
 
             </ul>
-            <?php require("search.php"); ?>
+
         </div>
     </div>
 </nav>

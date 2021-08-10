@@ -6,7 +6,7 @@
 
 #movies .col-md-3 .well {
     height: 500px;
-    padding-top: 50px;
+    padding-top: 30px;
     padding-bottom: 50px;
 
 }
@@ -45,9 +45,7 @@ body {
     padding-bottom: 15px;
 }
 
-.related {
-    padding-top: 20px;
-}
+
 
 /* Nav Bar */
 
@@ -94,7 +92,22 @@ body {
     text-align: center;
 }
 
+.searchbox{
+    width: 800px;
+    align-self: center;
+    text-align: center;
+}
 
+/*Movie Info*/
+.container {
+    padding-top: 20px;
+    padding-bottom: -20px;
+}
+
+.thumbnail {
+    height: 500px;
+    width: 333px;
+}
 
 
 
