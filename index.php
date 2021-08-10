@@ -1,6 +1,3 @@
-<?php
-require("sessionCheck.php");
-?>
 
 
 
@@ -20,7 +17,7 @@ require("sessionCheck.php");
         <body>
 
         <?php require("nav.php"); ?>
-        <?php require("search.php"); ?>
+
         <div class="container">
             <div id="movies" class="row"</div>
         </div>

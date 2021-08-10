@@ -1,11 +1,11 @@
-<div class="container">
-    <div class="jumbotron">
-        <h3 class="text-center">Search For Any Movie</h3>
-        <form id="searchForm" method="POST" action="index.php">
-            <input type="text" class="form-control" id="searchMovie" placeholder="Search Movies...">
-        </form>
-    </div>
-</div>
 
+
+<form class="d-flex search" id="searchForm" method="POST" action="index.php">
+    <!--Search Box-->
+    <input class="form-control me-sm-2 " type="text" id="searchMovie" placeholder="Search Movies..." >
+
+    <!--Search Button-->
+    <button class="btn btn-primary my-2 my-sm-0 searchbutton " type="submit">Search</button>
+</form>
 
 
