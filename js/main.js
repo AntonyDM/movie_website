@@ -74,7 +74,7 @@ function getActors(searchActor) {
                         <div class="well text-center">
                           <img class="actorprofile" src="https://image.tmdb.org/t/p/w500${actor.profile_path}">
                           <h5>${actor.name}</h5>
-                          <a onclick="movieSelected('${actor.id}')" class="btn btn-primary" href="#">Movie Details</a>
+                          <a onclick="actorSelected('${actor.id}')" class="btn btn-primary" href="#">Movie Details</a>
                         </div>
                       </div>
                     `;
@@ -127,6 +127,14 @@ function tvSelected(id) {
     sessionStorage.setItem("showId", id);
     //create new window with /movie.html at end
     window.location = "tv.php";
+    return false;
+}
+
+function actorSelected(id) {
+    //Set to broswer storage
+    sessionStorage.setItem("actorId", id);
+    //create new window with /movie.html at end
+    window.location = "actor.php";
     return false;
 }
 
@@ -210,6 +218,88 @@ function getMovie() {
       .catch((err) => {
         console.log(err);
       });
+
+}
+
+function getActor() {
+    //Get movie ID from the session storage
+    let actorId = sessionStorage.getItem("actorId");
+
+    axios.get("https://api.themoviedb.org/3/person/" + actorId + "?api_key=1350e4528ff8559ef2b0fa6679f97d84")
+        .then(function (response) {
+            console.log(response);
+            //info for the movie found in data
+            let actor = response.data;
+
+            let output = `
+                    <div class="row">
+                        <div class="col-md-4">
+                            <img src="https://image.tmdb.org/t/p/w500${actor.profile_path}" class="movieposter thumbnail">
+                        </div>
+                        <div class="col-md-8">
+                            <h2 class="movietitle">${actor.name}</h2>
+                            <ul class="list-group">
+                               <!--Two Genres-->
+                              <li class="list-group-item"><strong>Born:</strong> ${actor.birthday}</li>
+                              <li class="list-group-item"><strong>Born In: </strong> ${actor.place_of_birth}</li>
+                              
+                            </ul>
+                            <div class="plot">
+                              <h3>Biography</h3>
+                              ${actor.biography}
+                             </div>
+                             <div class="buttons">
+                                <a href="http://imdb.com/title/${actor.imdb_id}" target="_blank" class="btn btn-primary">View IMDB</a>
+                                <a href="index.php" class="btn btn-default">Go Back To Search</a>
+                              
+                             </div>
+                        </div>
+                    </div>
+                    
+                    <br>
+                    </div class="row">
+                        <div class="well">
+                            <hr>
+                            
+                        </div>
+                    </div>  
+                    
+                `;
+
+            $("#actor").html(output);
+        })
+        .catch((err) => {
+            console.log(err);
+        });
+
+    //axios.get('http://www.omdbapi.com?s='+ searchMovie+'&apikey=48d6917d')
+    axios
+        .get(
+
+            "https://api.themoviedb.org/3/movie/"+ movieId + "/recommendations?api_key=1350e4528ff8559ef2b0fa6679f97d84&language=en-US&page=1"
+        )
+        .then((response) => {
+            console.log(response);
+            //puts the array of movies into the variable
+            let movies = response.data.results;
+            let output = "";
+            $.each(movies, (index, movie) => {
+                output += `
+                      <div class="col-md-3">
+                        <div class="well text-center">
+                          <img src="https://image.tmdb.org/t/p/w500${movie.poster_path}">
+                          <h5>${movie.title}</h5>
+                          <a onclick="movieSelected('${movie.id}')" class="btn btn-primary" href="#">Movie Details</a>
+                        </div>
+                      </div>
+                    `;
+            });
+            //prints the movies on the div with the class movies
+            $("#movies").html(output);
+        })
+        .catch((err) => {
+            console.log(err);
+        });
 
 }
 
