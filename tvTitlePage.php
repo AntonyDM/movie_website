@@ -17,10 +17,10 @@
 <body>
 
 <?php require("nav.php"); ?>
-<?php require("search.php"); ?>
+<?php require("searchBars/searchTVTitle.php"); ?>
 
 <div class="container">
-    <div id="movies" class="row"</div>
+    <div id="shows" class="row"</div>
 </div>
 <!--jquery-->
 <script

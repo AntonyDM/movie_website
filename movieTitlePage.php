@@ -17,10 +17,10 @@
 <body>
 
 <?php require("nav.php"); ?>
-<?php require("search1.php"); ?>
+<?php require("searchBars/searchMovieTitle.php"); ?>
 
 <div class="container">
-    <div id="shows" class="row"</div>
+    <div id="movies" class="row"</div>
 </div>
 <!--jquery-->
 <script
@@ -31,6 +31,6 @@
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 <script src="js/main.js"></script>
 <script>
-    getPopular();
+    getPopularMovies();
 </script>
 </body>

@@ -72,9 +72,11 @@ body {
 
 .logo {
     font-size: 25px;
-
+    padding-right: 70px;
     margin-left: 30px;
 }
+
+
 
 .navbar {
     margin-bottom: 20px;
@@ -94,13 +96,16 @@ body {
     border-radius: 10px;
 }
 
-
-
-
-
-.nav-item {
+.nav-item a{
+    font-size: 18px;
+    text-align: center;
 
 }
+
+
+
+
+
 
 /*Main Movie Page*/
 .title {
@@ -126,8 +131,8 @@ body {
 }
 
 .thumbnail {
-    height: 500px;
-    width: 333px;
+    height: 600px;
+    width: 400px;
 }
 
 
