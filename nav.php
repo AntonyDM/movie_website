@@ -17,16 +17,10 @@
                     <a class="nav-link active" href="movieTitlePage.php">Search Movie by Title</a>
                 </li>
                 <li class="nav-item">
-                   <a class="nav-link active" href="#">Search Movie Show by Genre</a>
-                </li>
-                <li class="nav-item">
                     <a class="nav-link active" href="tvTitlePage.php">Search Tv by Title</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link active" href="#">Search TV Show by Genre</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link active" href="#">Search Actor</a>
+                    <a class="nav-link active" href="actorPage.php">Search Actor</a>
                 </li>
 
             </ul>

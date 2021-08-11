@@ -27,7 +27,7 @@
 
 <div class="container">
     <div class="jumbotron">
-        <h3 class="text-center related">Related Movies</h3>
+        <h3 class="text-center related">Related Shows</h3>
         <!--<form id="searchR">
             <input type="text" class="form-control" id="searchRelated" placeholder="Enter Movie Id:.">
         </form>-->

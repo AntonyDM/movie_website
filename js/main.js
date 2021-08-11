@@ -16,6 +16,17 @@ $(document).ready(() => {
   });
 });
 
+$(document).ready(() => {
+    $("#searchForm").on("submit", (e) => {
+        let searchActor = $("#searchActor").val();
+        getActors(searchActor);
+        e.preventDefault();
+
+    });
+});
+
+
+
 function getMovies(searchMovie) {
   //axios.get('http://www.omdbapi.com?s='+ searchMovie+'&apikey=48d6917d')
   axios
@@ -44,6 +55,36 @@ function getMovies(searchMovie) {
     .catch((err) => {
       console.log(err);
     });
+}
+
+function getActors(searchActor) {
+    //axios.get('http://www.omdbapi.com?s='+ searchMovie+'&apikey=48d6917d')
+    axios
+        .get(
+            "https://api.themoviedb.org/3/search/person?api_key=1350e4528ff8559ef2b0fa6679f97d84&query=" + searchActor
+        )
+        .then((response) => {
+            console.log(response);
+            //puts the array of movies into the variable
+            let actors = response.data.results;
+            let output = "";
+            $.each(actors, (index, actor) => {
+                output += `
+                      <div class="col-md-3">
+                        <div class="well text-center">
+                          <img class="actorprofile" src="https://image.tmdb.org/t/p/w500${actor.profile_path}">
+                          <h5>${actor.name}</h5>
+                          <a onclick="movieSelected('${actor.id}')" class="btn btn-primary" href="#">Movie Details</a>
+                        </div>
+                      </div>
+                    `;
+            });
+            //prints the movies on the div with the class movies
+            $("#actors").html(output);
+        })
+        .catch((err) => {
+            console.log(err);
+        });
 }
 
 function getTVs(searchTV) {
@@ -223,9 +264,11 @@ function getTV() {
             console.log(err);
         });
 
-    //axios.get('http://www.omdbapi.com?s='+ searchMovie+'&apikey=48d6917d')
+
     axios
-        .get("https://api.themoviedb.org/3/tv/"+ showId + "/recommendations?api_key=1350e4528ff8559ef2b0fa6679f97d84&language=en-US&page=1"
+        .get(
+
+            "https://api.themoviedb.org/3/tv/"+ showId + "/recommendations?api_key=1350e4528ff8559ef2b0fa6679f97d84&language=en-US&page=1"
         )
         .then((response) => {
             console.log(response);
@@ -238,13 +281,12 @@ function getTV() {
                         <div class="well text-center">
                           <img src="https://image.tmdb.org/t/p/w500${show.poster_path}">
                           <h5>${show.name}</h5>
-                          <a onclick="movieSelected('${show.id}')" class="btn btn-primary" href="#">Movie Details</a>
+                          <a onclick="tvSelected('${show.id}')" class="btn btn-primary" href="#">Movie Details</a>
                         </div>
                       </div>
                     `;
             });
             //prints the movies on the div with the class movies
-            /*#shows is the results from response.data*/
             $("#shows").html(output);
         })
         .catch((err) => {

@@ -1,10 +1,12 @@
+
+/*Movies*/
 #movies img, #movie img{
     width: 100%;
 
 }
 
 
-#movies #shows .col-md-3 .well {
+#movies .col-md-3 .well {
     height: 500px;
 
     padding-top: 30px;
@@ -18,13 +20,14 @@
     width: 266px;
 }
 
+/*Shows*/
 #shows img, #movie img{
     width: 100%;
 
 }
 
 
-#shows #shows .col-md-3 .well {
+#shows .col-md-3 .well {
     height: 500px;
 
     padding-top: 30px;
@@ -38,6 +41,26 @@
     width: 266px;
 }
 
+/*Actors*/
+#actors img, #movie img{
+    width: 100%;
+
+}
+
+
+#actors .col-md-3 .well {
+    height: 500px;
+
+    padding-top: 30px;
+    padding-bottom: 50px;
+
+}
+
+#actors .col-md-3 img {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    height: 400px;
+    width: 266px;
+}
 
 body {
     background-color: fffff;
