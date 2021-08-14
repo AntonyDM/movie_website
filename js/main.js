@@ -157,7 +157,7 @@ function getMovie() {
                             <h2 class="movietitle">${movie.title}</h2>
                             <ul class="list-group">
                                <!--Two Genres-->
-                              <li class="list-group-item"><strong>Genre:</strong> ${movie.genres[0].name}, ${movie.genres[1].name}</li>
+                              <li class="list-group-item"><strong>Genre:</strong> ${movie.genres[0].name}</li>
                               <li class="list-group-item"><strong>Released:</strong> ${movie.release_date}</li>
                               <li class="list-group-item"><strong>Rated:</strong> ${movie.vote_average}/10</li>
                               <li class="list-group-item"><strong>Runtime:</strong> ${movie.runtime} min.</li>
@@ -276,26 +276,26 @@ function getActor() {
     axios
         .get(
 
-            "https://api.themoviedb.org/3/movie/"+ movieId + "/recommendations?api_key=1350e4528ff8559ef2b0fa6679f97d84&language=en-US&page=1"
+            "https://api.themoviedb.org/3/person/"+ actorId + "/movie_credits?api_key=1350e4528ff8559ef2b0fa6679f97d84&language=en-US&page=1"
         )
         .then((response) => {
             console.log(response);
             //puts the array of movies into the variable
-            let movies = response.data.results;
+            let actors = response.data.cast;
             let output = "";
-            $.each(movies, (index, movie) => {
+            $.each(actors, (index, actor) => {
                 output += `
                       <div class="col-md-3">
                         <div class="well text-center">
-                          <img src="https://image.tmdb.org/t/p/w500${movie.poster_path}">
-                          <h5>${movie.title}</h5>
-                          <a onclick="movieSelected('${movie.id}')" class="btn btn-primary" href="#">Movie Details</a>
+                          <img src="https://image.tmdb.org/t/p/w500${actor.poster_path}">
+                          <h5>${actor.title}</h5>
+                          <a onclick="movieSelected('${actor.id}')" class="btn btn-primary" href="#">Movie Details</a>
                         </div>
                       </div>
                     `;
             });
             //prints the movies on the div with the class movies
-            $("#movies").html(output);
+            $("#actors").html(output);
         })
         .catch((err) => {
             console.log(err);
@@ -322,7 +322,7 @@ function getTV() {
                             <h2 class="movietitle">${show.name}</h2>
                             <ul class="list-group">
                                <!--Two Genres-->
-                              <li class="list-group-item"><strong>Genre:</strong> ${show.genres[0].name}, ${show.genres[1].name}</li>
+                              <li class="list-group-item"><strong>Genre:</strong> ${show.genres[0].name}</li>
                               <li class="list-group-item"><strong>Released:</strong> ${show.first_air_date}</li>
                               <li class="list-group-item"><strong>Rated:</strong> ${show.vote_average}/10</li>
                             </ul>
