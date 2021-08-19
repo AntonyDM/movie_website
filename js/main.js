@@ -40,6 +40,7 @@ function getMovies(searchMovie) {
       let output = "";
       $.each(movies, (index, movie) => {
         output += `
+                      <!--Puts into the bootstrap column of 4-->
                       <div class="col-md-4">
                         <div class="well text-center">
                           <img src="https://image.tmdb.org/t/p/w500${movie.poster_path}">
@@ -151,7 +152,7 @@ function getMovie() {
       let output = `
                     <div class="row">
                         <div class="col-md-4">
-                            <img src="https://image.tmdb.org/t/p/w500${movie.poster_path}" class="thumbnail movieposter">
+                            <img src="https://image.tmdb.org/t/p/w500${movie.poster_path}" class="thumbnail poster">
                         </div>
                         <div class="col-md-8">
                             <h2 class="movietitle">${movie.title}</h2>
@@ -234,7 +235,7 @@ function getActor() {
             let output = `
                     <div class="row">
                         <div class="col-md-4">
-                            <img src="https://image.tmdb.org/t/p/w500${actor.profile_path}" class="movieposter thumbnail">
+                            <img src="https://image.tmdb.org/t/p/w500${actor.profile_path}" class="poster thumbnail">
                         </div>
                         <div class="col-md-8">
                             <h2 class="movietitle">${actor.name}</h2>
@@ -316,7 +317,7 @@ function getTV() {
             let output = `
                     <div class="row">
                         <div class="col-md-4">
-                            <img src="https://image.tmdb.org/t/p/w500${show.poster_path}" class="thumbnail movieposter">
+                            <img src="https://image.tmdb.org/t/p/w500${show.poster_path}" class="thumbnail poster">
                         </div>
                         <div class="col-md-8">
                             <h2 class="movietitle">${show.name}</h2>
@@ -407,7 +408,7 @@ function getPopularMovies(){
                         <!--Makes the elements centered per column-->
                         <div class="well text-center">
                           <!--Movie Poster-->
-                          <img class="movieposter" src="https://image.tmdb.org/t/p/w500${movie.poster_path}">
+                          <img class="poster" src="https://image.tmdb.org/t/p/w500${movie.poster_path}">
                           <!--Movie Title-->
                           <h5 class="title">${movie.title}</h5>
                           <!--Movie Details-->
@@ -448,7 +449,7 @@ function indexgetPopularMovies(){
                         <!--Makes the elements centered per column-->
                         <div class="well text-center index">
                           <!--Movie Poster-->
-                          <img class="movieposter" src="https://image.tmdb.org/t/p/w500${movie.poster_path}">
+                          <img class="poster" src="https://image.tmdb.org/t/p/w500${movie.poster_path}">
                           <!--Movie Title-->
                           <h5 class="title">${movie.title}</h5>
                           <!--Movie Details-->
@@ -467,6 +468,7 @@ function indexgetPopularMovies(){
 
 }
 
+//Get TV for TV page
 function getPopularTVs(){
 
     //Get the api data
@@ -488,7 +490,7 @@ function getPopularTVs(){
                         <!--Makes the elements centered per column-->
                         <div class="well text-center">
                           <!--Movie Poster-->
-                          <img class="movieposter" src="https://image.tmdb.org/t/p/w500${show.poster_path}">
+                          <img class="poster" src="https://image.tmdb.org/t/p/w500${show.poster_path}">
                           <!--Movie Title-->
                           <h5 class="title">${show.name}</h5>
                           <!--Movie Details-->
@@ -529,7 +531,7 @@ function indexgetPopularTVs(){
                         <!--Makes the elements centered per column-->
                         <div class="well text-center index">
                           <!--Movie Poster-->
-                          <img class="movieposter" src="https://image.tmdb.org/t/p/w500${show.poster_path}">
+                          <img class="poster" src="https://image.tmdb.org/t/p/w500${show.poster_path}">
                           <!--Movie Title-->
                           <h5 class="title">${show.name}</h5>
                           <!--Movie Details-->
@@ -548,5 +550,45 @@ function indexgetPopularTVs(){
 
 }
 
+//Get TV for TV page
+function getPopularActors(){
+
+    //Get the api data
+    axios
+        .get(
+            "https://api.themoviedb.org/3/person/popular?api_key=1350e4528ff8559ef2b0fa6679f97d84&language=en-US&page=1"
+        )
+        .then((response) => {
+            console.log(response);
+            //puts the array of movies into the variable
+            // The slice only shows the first 4 results
+            //The final result will be called #movies
+            let actors = response.data.results;
+            let output = "";
+            $.each(actors, (index, actor) => {
+                output += `
+                      <!--Puts into the bootstrap column of 4-->
+                      <div class="col-md-4" >
+                        <!--Makes the elements centered per column-->
+                        <div class="well text-center">
+                          <!--Movie Poster-->
+                          <img class="poster" src="https://image.tmdb.org/t/p/w500${actor.profile_path}">
+                          <!--Movie Title-->
+                          <h5 class="text">${actor.name}</h5>
+                          <!--Movie Details-->
+                          <a onclick="actorSelected('${actor.id}')" class="btn btn-primary button" href="#">Actor's Details</a>
+                        </div>
+                      </div>
+                    `;
+            });
+            //prints the movies on the div with the class movies
+            $('#actors').html(output);
+        })
+        .catch(function (error) {
+            console.log(error);
+        });
+
+
+}
 
 //1350e4528ff8559ef2b0fa6679f97d84
