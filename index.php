@@ -16,17 +16,27 @@
 
         <body>
 
-        <?php require("nav.php"); ?>
+            <?php require("nav.php"); ?>
+
+            <!--Displays current popular movies-->
+            <div class="container">
+                <div id="movies" class="row"</div>
+            </div>
+
+            <!--jquery-->
+            <script
+                    src="https://code.jquery.com/jquery-3.6.0.min.js"
+                    integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+                    crossorigin="anonymous"></script>
+            <!--axios npm-->
+            <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+            <script src="js/main.js"></script>
 
 
+            <!--Gets current popular movies-->
+            <script>
+                indexgetPopularMovies();
+            </script>
 
-        <!--jquery-->
-        <script
-                src="https://code.jquery.com/jquery-3.6.0.min.js"
-                integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
-                crossorigin="anonymous"></script>
-        <!--axios npm-->
-        <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-        <script src="js/main.js"></script>
-
-    </body>
+        </body>
+</html>

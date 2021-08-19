@@ -385,6 +385,7 @@ function getTV() {
 
 }
 
+//Get Popular Movies for Movie page
 function getPopularMovies(){
 
   axios
@@ -413,6 +414,42 @@ function getPopularMovies(){
       .catch(function (error) {
         console.log(error);
       });
+
+
+}
+
+//Get Popular movies for Index page
+function indexgetPopularMovies(){
+
+    axios
+        .get(
+            "https://api.themoviedb.org/3/movie/popular?api_key=1350e4528ff8559ef2b0fa6679f97d84&language=en-US&page=1"
+        )
+        .then((response) => {
+            console.log(response);
+            //puts the array of movies into the variable
+            //The slice only shows the first 4 results
+            //The final result will be called #movies
+            let movies = response.data.results.slice(0,4);
+            let output = "";
+            $.each(movies, (index, movie) => {
+                output += `
+                      <!--Puts into the bootstrap column-->
+                      <div class="col-md-4" >
+                        <div class="well text-center">
+                          <img class="movieposter" src="https://image.tmdb.org/t/p/w500${movie.poster_path}">
+                          <h5 class="title">${movie.title}</h5>
+                           <a onclick="movieSelected('${movie.id}')" class="btn btn-primary" href="#">Movie Details</a>
+                        </div>
+                      </div>
+                    `;
+            });
+            //prints the movies on the div with the class movies
+            $('#movies').html(output);
+        })
+        .catch(function (error) {
+            console.log(error);
+        });
 
 
 }
