@@ -96,6 +96,29 @@
 
 }
 
+/*Index Shows*/
+#indexshows img, #movie img{
+    width: 100%;
+
+}
+
+
+#indexshows .col-md-3 .well {
+    /*Gives space between poster and details button*/
+    display: inline;
+
+    padding-top: 30px;
+    padding-bottom: 50px;
+
+}
+
+#indexshows .col-md-3 img {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    /*Forced height and wdith for all posters*/
+    height: 459px; !important;
+    width: 306px; !important;
+
+}
 
 
 

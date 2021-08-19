@@ -40,7 +40,7 @@ function getMovies(searchMovie) {
       let output = "";
       $.each(movies, (index, movie) => {
         output += `
-                      <div class="col-md-3">
+                      <div class="col-md-4">
                         <div class="well text-center">
                           <img src="https://image.tmdb.org/t/p/w500${movie.poster_path}">
                           <h5>${movie.title}</h5>
@@ -101,7 +101,7 @@ function getTVs(searchTV) {
                         <div class="well text-center">
                           <img alt="image is not available" src="https://image.tmdb.org/t/p/w500${show.poster_path}">
                           <h5>${show.name}</h5>
-                          <a onclick="tvSelected('${show.id}')" class="btn btn-primary" href="#">Movie Details</a>
+                          <a onclick="tvSelected('${show.id}')" class="btn btn-primary" href="#">Show Details</a>
                         </div>
                       </div>
                     `;
@@ -203,7 +203,7 @@ function getMovie() {
         let output = "";
         $.each(movies, (index, movie) => {
           output += `
-                      <div class="col-md-3">
+                      <div class="col-md-4">
                         <div class="well text-center">
                           <img src="https://image.tmdb.org/t/p/w500${movie.poster_path}">
                           <h5>${movie.title}</h5>
@@ -402,8 +402,8 @@ function getPopularMovies(){
         let output = "";
         $.each(movies, (index, movie) => {
           output += `
-                      <!--Puts into the bootstrap column of 3-->
-                      <div class="col-md-3" >
+                      <!--Puts into the bootstrap column of 4-->
+                      <div class="col-md-4" >
                         <!--Makes the elements centered per column-->
                         <div class="well text-center">
                           <!--Movie Poster-->
@@ -467,7 +467,86 @@ function indexgetPopularMovies(){
 
 }
 
+function getPopularTVs(){
 
+    //Get the api data
+    axios
+        .get(
+            "https://api.themoviedb.org/3/tv/popular?api_key=1350e4528ff8559ef2b0fa6679f97d84&language=en-US&page=1"
+        )
+        .then((response) => {
+            console.log(response);
+            //puts the array of movies into the variable
+            // The slice only shows the first 4 results
+            //The final result will be called #movies
+            let shows = response.data.results;
+            let output = "";
+            $.each(shows, (index, show) => {
+                output += `
+                      <!--Puts into the bootstrap column of 4-->
+                      <div class="col-md-4" >
+                        <!--Makes the elements centered per column-->
+                        <div class="well text-center">
+                          <!--Movie Poster-->
+                          <img class="movieposter" src="https://image.tmdb.org/t/p/w500${show.poster_path}">
+                          <!--Movie Title-->
+                          <h5 class="title">${show.name}</h5>
+                          <!--Movie Details-->
+                          <a onclick="tvSelected('${show.id}')" class="btn btn-primary" href="#">Show Details</a>
+                        </div>
+                      </div>
+                    `;
+            });
+            //prints the movies on the div with the class movies
+            $('#shows').html(output);
+        })
+        .catch(function (error) {
+            console.log(error);
+        });
+
+
+}
+
+//Get Popular movies for Index page
+function indexgetPopularTVs(){
+
+    //Get the api data
+    axios
+        .get(
+            "https://api.themoviedb.org/3/tv/popular?api_key=1350e4528ff8559ef2b0fa6679f97d84&language=en-US&page=1"
+        )
+        .then((response) => {
+            console.log(response);
+            //puts the array of movies into the variable
+            //The slice only shows the first 4 results
+            //The final result will be called #movies
+            let indexshows = response.data.results.slice(0,4);
+            let output = "";
+            $.each(indexshows, (index, show) => {
+                output += `
+                      <!--Puts into the bootstrap column of 4-->
+                      <div class="col-md-4" >
+                        <!--Makes the elements centered per column-->
+                        <div class="well text-center index">
+                          <!--Movie Poster-->
+                          <img class="movieposter" src="https://image.tmdb.org/t/p/w500${show.poster_path}">
+                          <!--Movie Title-->
+                          <h5 class="title">${show.name}</h5>
+                          <!--Movie Details-->
+                          <a onclick="tvSelected('${show.id}')" class="btn btn-primary" href="#">Show Details</a>
+                        </div>
+                      </div>
+                    `;
+            });
+            //prints the movies on the div with the class movies
+            $('#indexshows').html(output);
+        })
+        .catch(function (error) {
+            console.log(error);
+        });
+
+
+}
 
 
 //1350e4528ff8559ef2b0fa6679f97d84

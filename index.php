@@ -27,7 +27,7 @@
             <!--Displays current popular shows-->
             <h3 class="text-center title">Current Popular TV Shows</h3>
             <div class="container">
-                <div id="movies" class="row"</div>
+                <div id="indexshows" class="row"</div>
             </div>
 
             <!--jquery-->
@@ -43,6 +43,7 @@
             <!--Gets current popular movies-->
             <script>
                 indexgetPopularMovies();
+                indexgetPopularTVs();
             </script>
 
         </body>
