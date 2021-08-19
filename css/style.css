@@ -72,6 +72,36 @@
     width: 306px; !important;
 }
 
+/*Index Movies*/
+#indexmovies img, #movie img{
+    width: 100%;
+
+}
+
+
+#indexmovies .col-md-3 .well {
+    /*Gives space between poster and details button*/
+    display: inline;
+
+    padding-top: 30px;
+    padding-bottom: 50px;
+
+}
+
+#indexmovies .col-md-3 img {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    /*Forced height and wdith for all posters*/
+    height: 459px; !important;
+    width: 306px; !important;
+
+}
+
+
+
+
+
+
+
 
 body {
     background-color: fffff;
@@ -159,6 +189,18 @@ body {
     text-align: center;
 }
 
+.col-md-4 {
+    -ms-flex:0 0 auto;
+    flex:0 0 auto;
+    width:25%;
+
+}
+
+.title {
+    padding-bottom: 30px;
+    padding-top: 50px;
+}
+
 /*Movie Info*/
 .container {
     padding-top: 20px;
@@ -169,6 +211,10 @@ body {
     height: 525px;
     width: 350px;
 }
+
+
+
+
 
 
 

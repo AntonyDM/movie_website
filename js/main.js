@@ -388,6 +388,7 @@ function getTV() {
 //Get Popular Movies for Movie page
 function getPopularMovies(){
 
+  //Get the api data
   axios
       .get(
           "https://api.themoviedb.org/3/movie/popular?api_key=1350e4528ff8559ef2b0fa6679f97d84&language=en-US&page=1"
@@ -395,15 +396,22 @@ function getPopularMovies(){
       .then((response) => {
         console.log(response);
         //puts the array of movies into the variable
+        // The slice only shows the first 4 results
+        //The final result will be called #movies
         let movies = response.data.results;
         let output = "";
         $.each(movies, (index, movie) => {
           output += `
+                      <!--Puts into the bootstrap column of 3-->
                       <div class="col-md-3" >
+                        <!--Makes the elements centered per column-->
                         <div class="well text-center">
+                          <!--Movie Poster-->
                           <img class="movieposter" src="https://image.tmdb.org/t/p/w500${movie.poster_path}">
+                          <!--Movie Title-->
                           <h5 class="title">${movie.title}</h5>
-                           <a onclick="movieSelected('${movie.id}')" class="btn btn-primary" href="#">Movie Details</a>
+                          <!--Movie Details-->
+                          <a onclick="movieSelected('${movie.id}')" class="btn btn-primary" href="#">Movie Details</a>
                         </div>
                       </div>
                     `;
@@ -421,6 +429,7 @@ function getPopularMovies(){
 //Get Popular movies for Index page
 function indexgetPopularMovies(){
 
+    //Get the api data
     axios
         .get(
             "https://api.themoviedb.org/3/movie/popular?api_key=1350e4528ff8559ef2b0fa6679f97d84&language=en-US&page=1"
@@ -430,22 +439,26 @@ function indexgetPopularMovies(){
             //puts the array of movies into the variable
             //The slice only shows the first 4 results
             //The final result will be called #movies
-            let movies = response.data.results.slice(0,4);
+            let indexmovies = response.data.results.slice(0,4);
             let output = "";
-            $.each(movies, (index, movie) => {
+            $.each(indexmovies, (index, movie) => {
                 output += `
-                      <!--Puts into the bootstrap column-->
+                      <!--Puts into the bootstrap column of 4-->
                       <div class="col-md-4" >
-                        <div class="well text-center">
+                        <!--Makes the elements centered per column-->
+                        <div class="well text-center index">
+                          <!--Movie Poster-->
                           <img class="movieposter" src="https://image.tmdb.org/t/p/w500${movie.poster_path}">
+                          <!--Movie Title-->
                           <h5 class="title">${movie.title}</h5>
-                           <a onclick="movieSelected('${movie.id}')" class="btn btn-primary" href="#">Movie Details</a>
+                          <!--Movie Details-->
+                          <a onclick="movieSelected('${movie.id}')" class="btn btn-primary" href="#">Movie Details</a>
                         </div>
                       </div>
                     `;
             });
             //prints the movies on the div with the class movies
-            $('#movies').html(output);
+            $('#indexmovies').html(output);
         })
         .catch(function (error) {
             console.log(error);

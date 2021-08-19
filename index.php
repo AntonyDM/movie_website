@@ -19,6 +19,13 @@
             <?php require("nav.php"); ?>
 
             <!--Displays current popular movies-->
+            <h3 class="text-center title">Current Popular Movies</h3>
+            <div class="container">
+                <div id="indexmovies" class="row"</div>
+            </div>
+
+            <!--Displays current popular shows-->
+            <h3 class="text-center title">Current Popular TV Shows</h3>
             <div class="container">
                 <div id="movies" class="row"</div>
             </div>
