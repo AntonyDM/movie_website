@@ -24,7 +24,7 @@
 }
 
 /*Shows*/
-#shows img, #movie img{
+#shows img, #show img{
     width: 100%;
 
 }
@@ -48,7 +48,7 @@
 }
 
 /*Actors*/
-#actors img, #movie img{
+#actors img, #actor img{
     width: 100%;
 
 }
@@ -220,6 +220,12 @@ body {
     padding-top: 50px;
 }
 
+.poster {
+    height: 459px; !important;
+    width: 306px; !important;
+}
+
+
 /*Movie Info*/
 .container {
     padding-top: 20px;
@@ -241,8 +247,10 @@ body {
 }
 
 .text {
-    padding-top: 20px;
+    padding-top: 30px;
+    padding-bottom: 5px;
     display: block;
+    font-size: 18px;
 }
 
 .button {

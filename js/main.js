@@ -42,10 +42,14 @@ function getMovies(searchMovie) {
         output += `
                       <!--Puts into the bootstrap column of 4-->
                       <div class="col-md-4">
+                        <!--Makes the elements centered per column-->
                         <div class="well text-center">
-                          <img src="https://image.tmdb.org/t/p/w500${movie.poster_path}">
-                          <h5>${movie.title}</h5>
-                          <a onclick="movieSelected('${movie.id}')" class="btn btn-primary" href="#">Movie Details</a>
+                          <!--Movie Poster-->
+                          <img class="poster" src="https://image.tmdb.org/t/p/w500${movie.poster_path}">
+                          <!--Movie Title-->
+                          <h5 class="text">${movie.title}</h5>
+                          <!--Movie Details-->
+                          <a onclick="movieSelected('${movie.id}')" class="btn btn-primary button" href="#">Movie Details</a>
                         </div>
                       </div>
                     `;
@@ -71,11 +75,16 @@ function getActors(searchActor) {
             let output = "";
             $.each(actors, (index, actor) => {
                 output += `
-                      <div class="col-md-3">
+                      <!--Puts into the bootstrap column of 4-->
+                      <div class="col-md-4">
+                        <!--Makes the elements centered per column-->
                         <div class="well text-center">
-                          <img class="actorprofile" src="https://image.tmdb.org/t/p/w500${actor.profile_path}">
-                          <h5>${actor.name}</h5>
-                          <a onclick="actorSelected('${actor.id}')" class="btn btn-primary" href="#">Movie Details</a>
+                          <!--Actor Pic-->
+                          <img class="poster" src="https://image.tmdb.org/t/p/w500${actor.profile_path}">
+                          <!--Actor Name-->
+                          <h5 class="text">${actor.name}</h5>
+                          <!--Actor Details-->
+                          <a onclick="actorSelected('${actor.id}')" class="btn btn-primary button" href="#">Actor Details</a>
                         </div>
                       </div>
                     `;
@@ -98,11 +107,16 @@ function getTVs(searchTV) {
             let output = "";
             $.each(shows, (index, show) => {
                 output += `
-                      <div class="col-md-3">
+                      <!--Puts into the bootstrap column of 4-->
+                      <div class="col-md-4">
+                        <!--Makes the elements centered per column-->
                         <div class="well text-center">
-                          <img alt="image is not available" src="https://image.tmdb.org/t/p/w500${show.poster_path}">
-                          <h5>${show.name}</h5>
-                          <a onclick="tvSelected('${show.id}')" class="btn btn-primary" href="#">Show Details</a>
+                          <!--Show Poster-->
+                          <img class="poster" alt="image is not available" src="https://image.tmdb.org/t/p/w500${show.poster_path}">
+                          <!--Show Title-->
+                          <h5 class="text">${show.name}</h5>
+                          <!--Movie Details-->
+                          <a onclick="tvSelected('${show.id}')" class="btn btn-primary button" href="#">Show Details</a>
                         </div>
                       </div>
                     `;
@@ -410,9 +424,9 @@ function getPopularMovies(){
                           <!--Movie Poster-->
                           <img class="poster" src="https://image.tmdb.org/t/p/w500${movie.poster_path}">
                           <!--Movie Title-->
-                          <h5 class="title">${movie.title}</h5>
+                          <h5 class="text">${movie.title}</h5>
                           <!--Movie Details-->
-                          <a onclick="movieSelected('${movie.id}')" class="btn btn-primary" href="#">Movie Details</a>
+                          <a onclick="movieSelected('${movie.id}')" class="btn btn-primary button" href="#">Movie Details</a>
                         </div>
                       </div>
                     `;
@@ -489,12 +503,12 @@ function getPopularTVs(){
                       <div class="col-md-4" >
                         <!--Makes the elements centered per column-->
                         <div class="well text-center">
-                          <!--Movie Poster-->
+                          <!--TV Poster-->
                           <img class="poster" src="https://image.tmdb.org/t/p/w500${show.poster_path}">
-                          <!--Movie Title-->
-                          <h5 class="title">${show.name}</h5>
-                          <!--Movie Details-->
-                          <a onclick="tvSelected('${show.id}')" class="btn btn-primary" href="#">Show Details</a>
+                          <!--TV Title-->
+                          <h5 class="text">${show.name}</h5>
+                          <!--Show Details-->
+                          <a onclick="tvSelected('${show.id}')" class="btn btn-primary button" href="#">Show Details</a>
                         </div>
                       </div>
                     `;
@@ -571,11 +585,11 @@ function getPopularActors(){
                       <div class="col-md-4" >
                         <!--Makes the elements centered per column-->
                         <div class="well text-center">
-                          <!--Movie Poster-->
+                          <!--Actor Pic-->
                           <img class="poster" src="https://image.tmdb.org/t/p/w500${actor.profile_path}">
-                          <!--Movie Title-->
+                          <!--Actor Name-->
                           <h5 class="text">${actor.name}</h5>
-                          <!--Movie Details-->
+                          <!--Actor Details-->
                           <a onclick="actorSelected('${actor.id}')" class="btn btn-primary button" href="#">Actor's Details</a>
                         </div>
                       </div>
