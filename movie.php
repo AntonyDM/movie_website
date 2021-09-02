@@ -1,7 +1,4 @@
 
-
-
-
 <html>
     <head>
         <title>Movie Website</title>
@@ -25,18 +22,20 @@
         </div>
 
 
+
+
         <div class="container">
             <div class="jumbotron">
-                <h3 class="text-center related">Related Movies</h3>
-                <!--<form id="searchR">
-                    <input type="text" class="form-control" id="searchRelated" placeholder="Enter Movie Id:.">
-                </form>-->
+                <h3 class="text-center related">Similar Movies</h3>
             </div>
         </div>
+
+
 
         <div class="container">
             <div id="movies" class="row"></div>
         </div>
+
 
 
 

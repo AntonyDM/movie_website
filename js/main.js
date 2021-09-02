@@ -162,7 +162,6 @@ function getMovie() {
       console.log(response);
       //info for the movie found in data
       let movie = response.data;
-
       let output = `
                     <div class="row">
                         <div class="col-md-4">
@@ -170,7 +169,12 @@ function getMovie() {
                         </div>
                         <div class="col-md-8">
                             <h2 class="movietitle">${movie.title}</h2>
-                            <ul class="list-group">
+                            <script>getMovieTrailer();</script>
+                            
+                            <div id="videos" class="row trailer"></div>
+                            
+                            <!--The calss list creates the gap between the vid and the list-->
+                            <ul class="list-group list">
                                <!--Two Genres-->
                               <li class="list-group-item"><strong>Genre:</strong> ${movie.genres[0].name}</li>
                               <li class="list-group-item"><strong>Released:</strong> ${movie.release_date}</li>
@@ -181,10 +185,9 @@ function getMovie() {
                               <h3>Plot</h3>
                               ${movie.overview}
                              </div>
+                             
                              <div class="buttons">
-                                <a href="http://imdb.com/title/${movie.imdb_id}" target="_blank" class="btn btn-primary">View IMDB</a>
-                                <a href="index.php" class="btn btn-default">Go Back To Search</a>
-                                <a href="movielist.php" class="btn btn-default" onclick="addMovie();">Add to Movie List</a>
+                                <a href="movieTitlePage.php" class="btn btn-primary">Go Back To Search</a>
                              </div>
                         </div>
                     </div>
@@ -200,10 +203,13 @@ function getMovie() {
                 `;
 
       $("#movie").html(output);
+
     })
     .catch((err) => {
       console.log(err);
     });
+
+
 
   //axios.get('http://www.omdbapi.com?s='+ searchMovie+'&apikey=48d6917d')
   axios
@@ -264,8 +270,7 @@ function getActor() {
                               ${actor.biography}
                              </div>
                              <div class="buttons">
-                                <a href="http://imdb.com/title/${actor.imdb_id}" target="_blank" class="btn btn-primary">View IMDB</a>
-                                <a href="index.php" class="btn btn-default">Go Back To Search</a>
+                                <a href="actorPage.php" class="btn btn-primary">Go Back To Search</a>
                               
                              </div>
                         </div>
@@ -273,12 +278,27 @@ function getActor() {
                     
                     <br>
                     </div class="row">
+                    
                         <div class="well">
                             <hr>
                             
                         </div>
                     </div>  
                     
+                    <!--Title-->
+                    <div class="container">
+                        <div class="jumbotron">
+                            <h3 class="text-center related">Related Movies</h3>
+                        </div>
+                    </div>
+
+                    <!--List of Movies-->
+                    <div class="container">                              
+                        <div id="actorsmovies" class="row"></div>
+                    </div>
+                    
+                    
+                    <script>actorMovies();</script>
                 `;
 
             $("#actor").html(output);
@@ -287,34 +307,7 @@ function getActor() {
             console.log(err);
         });
 
-    //axios.get('http://www.omdbapi.com?s='+ searchMovie+'&apikey=48d6917d')
-    axios
-        .get(
 
-            "https://api.themoviedb.org/3/person/"+ actorId + "/movie_credits?api_key=1350e4528ff8559ef2b0fa6679f97d84&language=en-US&page=1"
-        )
-        .then((response) => {
-            console.log(response);
-            //puts the array of movies into the variable
-            let actors = response.data.cast;
-            let output = "";
-            $.each(actors, (index, actor) => {
-                output += `
-                      <div class="col-md-3">
-                        <div class="well text-center">
-                          <img src="https://image.tmdb.org/t/p/w500${actor.poster_path}">
-                          <h5>${actor.title}</h5>
-                          <a onclick="movieSelected('${actor.id}')" class="btn btn-primary" href="#">Movie Details</a>
-                        </div>
-                      </div>
-                    `;
-            });
-            //prints the movies on the div with the class movies
-            $("#actors").html(output);
-        })
-        .catch((err) => {
-            console.log(err);
-        });
 
 }
 
@@ -335,20 +328,27 @@ function getTV() {
                         </div>
                         <div class="col-md-8">
                             <h2 class="movietitle">${show.name}</h2>
-                            <ul class="list-group">
+                            
+                            <script>getTVTrailer();</script>
+                            
+                            <div id="videos" class="row trailer"></div>
+                            
+                            <!--The calss list creates the gap between the vid and the list-->
+                            <ul class="list-group list">
                                <!--Two Genres-->
                               <li class="list-group-item"><strong>Genre:</strong> ${show.genres[0].name}</li>
                               <li class="list-group-item"><strong>Released:</strong> ${show.first_air_date}</li>
                               <li class="list-group-item"><strong>Rated:</strong> ${show.vote_average}/10</li>
+                              <li class="list-group-item"><strong>Number of Episodes:</strong> ${show.number_of_episodes}</li>
                             </ul>
+                            
                             <div class="plot">
                               <h3>Plot</h3>
                               ${show.overview}
                              </div>
+                             
                              <div class="buttons">
-                                <a href="http://imdb.com/title/${show.imdb_id}" target="_blank" class="btn btn-primary">View IMDB</a>
-                                <a href="index.php" class="btn btn-default">Go Back To Search</a>
-                                <a href="movielist.php" class="btn btn-default" onclick="addMovie();">Add to Movie List</a>
+                                <a href="tvTitlePage.php" class="btn btn-primary">Go Back To Search</a>
                              </div>
                         </div>
                     </div>
@@ -386,7 +386,7 @@ function getTV() {
                         <div class="well text-center">
                           <img src="https://image.tmdb.org/t/p/w500${show.poster_path}">
                           <h5>${show.name}</h5>
-                          <a onclick="tvSelected('${show.id}')" class="btn btn-primary" href="#">Movie Details</a>
+                          <a onclick="tvSelected('${show.id}')" class="btn btn-primary" href="#">Show Details</a>
                         </div>
                       </div>
                     `;
@@ -465,7 +465,7 @@ function indexgetPopularMovies(){
                           <!--Movie Poster-->
                           <img class="poster" src="https://image.tmdb.org/t/p/w500${movie.poster_path}">
                           <!--Movie Title-->
-                          <h5 class="title">${movie.title}</h5>
+                          <h5 class="text">${movie.title}</h5>
                           <!--Movie Details-->
                           <a onclick="movieSelected('${movie.id}')" class="btn btn-primary" href="#">Movie Details</a>
                         </div>
@@ -547,7 +547,7 @@ function indexgetPopularTVs(){
                           <!--Movie Poster-->
                           <img class="poster" src="https://image.tmdb.org/t/p/w500${show.poster_path}">
                           <!--Movie Title-->
-                          <h5 class="title">${show.name}</h5>
+                          <h5 class="text">${show.name}</h5>
                           <!--Movie Details-->
                           <a onclick="tvSelected('${show.id}')" class="btn btn-primary" href="#">Show Details</a>
                         </div>
@@ -605,4 +605,96 @@ function getPopularActors(){
 
 }
 
+function getMovieTrailer(){
+    let movieId = sessionStorage.getItem("movieId");
+
+    axios
+        .get(
+            "https://api.themoviedb.org/3/movie/" + movieId + "/videos?api_key=1350e4528ff8559ef2b0fa6679f97d84&language=en-US"
+        )
+        .then((response) => {
+            console.log(response);
+            //puts the array of movies into the variable
+            let videos = response.data.results.filter(v => v.type === "Trailer").slice(0,1);
+            let output = "";
+            $.each(videos, (index, video) => {
+                output += `
+                          <div class="col-md-4">
+                            <div class="well text-center">
+                                <iframe width="420" height="315" class="video"
+                                    src="https://www.youtube.com/embed/${video.key}">
+                                    <h5>${video.type}</h5>
+                                </iframe>
+                            </div>
+                          </div>
+                        `;
+            });
+            //prints the movies on the div with the class movies
+            $("#videos").html(output);
+        })
+        .catch((err) => {
+            console.log(err);
+        });
+}
+
+function getTVTrailer(){
+    let showId = sessionStorage.getItem("showId");
+
+    axios.get("https://api.themoviedb.org/3/tv/" + showId + "/videos?api_key=1350e4528ff8559ef2b0fa6679f97d84&language=en-US")
+        .then((response) => {
+            console.log(response);
+            //puts the array of movies into the variable
+            let videos = response.data.results.filter(v => v.type === "Trailer").slice(0,1);
+            let output = "";
+            $.each(videos, (index, video) => {
+                output += `
+                          <div class="col-md-4">
+                            <div class="well text-center">
+                                <iframe width="420" height="315" class="video"
+                                    src="https://www.youtube.com/embed/${video.key}">
+                                    <h5>${video.type}</h5>
+                                </iframe>
+                            </div>
+                          </div>
+                        `;
+            });
+            //prints the movies on the div with the class movies
+            $("#videos").html(output);
+        })
+        .catch((err) => {
+            console.log(err);
+        });
+}
+
+function actorMovies(){
+    let actorId = sessionStorage.getItem("actorId");
+    //axios.get('http://www.omdbapi.com?s='+ searchMovie+'&apikey=48d6917d')
+    axios
+        .get(
+
+            "https://api.themoviedb.org/3/person/"+ actorId + "/movie_credits?api_key=1350e4528ff8559ef2b0fa6679f97d84&language=en-US&page=1"
+        )
+        .then((response) => {
+            console.log(response);
+            //puts the array of movies into the variable
+            let actorsmovies = response.data.cast.slice(0,8);
+            let output = "";
+            $.each(actorsmovies, (index, actor) => {
+                output += `
+                      <div class="col-md-3">
+                        <div class="well text-center">
+                          <img src="https://image.tmdb.org/t/p/w500${actor.poster_path}">
+                          <h5>${actor.title}</h5>
+                          <a onclick="movieSelected('${actor.id}')" class="btn btn-primary" href="#">Movie Details</a>
+                        </div>
+                      </div>
+                    `;
+            });
+            //prints the movies on the div with the class movies
+            $("#actorsmovies").html(output);
+        })
+        .catch((err) => {
+            console.log(err);
+        });
+}
 //1350e4528ff8559ef2b0fa6679f97d84

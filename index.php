@@ -24,6 +24,8 @@
                 <div id="indexmovies" class="row"</div>
             </div>
 
+            <br>
+
             <!--Displays current popular shows-->
             <h3 class="text-center title">Current Popular TV Shows</h3>
             <div class="container">
