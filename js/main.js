@@ -153,6 +153,7 @@ function actorSelected(id) {
     return false;
 }
 
+//indivudal movie page
 function getMovie() {
   //Get movie ID from the session storage
   let movieId = sessionStorage.getItem("movieId");
@@ -224,10 +225,10 @@ function getMovie() {
         let output = "";
         $.each(movies, (index, movie) => {
           output += `
-                      <div class="col-md-4">
+                      <div class="col-md-3">
                         <div class="well text-center">
-                          <img src="https://image.tmdb.org/t/p/w500${movie.poster_path}">
-                          <h5>${movie.title}</h5>
+                          <img class="poster" src="https://image.tmdb.org/t/p/w500${movie.poster_path}">
+                          <h5 class="text">${movie.title}</h5>
                           <a onclick="movieSelected('${movie.id}')" class="btn btn-primary" href="#">Movie Details</a>
                         </div>
                       </div>
@@ -242,6 +243,7 @@ function getMovie() {
 
 }
 
+//indivudal actor page
 function getActor() {
     //Get movie ID from the session storage
     let actorId = sessionStorage.getItem("actorId");
@@ -265,7 +267,7 @@ function getActor() {
                               <li class="list-group-item"><strong>Born In: </strong> ${actor.place_of_birth}</li>
                               
                             </ul>
-                            <div class="plot">
+                            <div class="biography">
                               <h3>Biography</h3>
                               ${actor.biography}
                              </div>
@@ -297,8 +299,23 @@ function getActor() {
                         <div id="actorsmovies" class="row"></div>
                     </div>
                     
+                    <!--Title-->
+                    <div class="container">
+                        <div class="jumbotron">
+                            <h3 class="text-center related">Related Shows</h3>
+                        </div>
+                    </div>
+
+                    <!--List of Shows-->
+                    <div class="container">                              
+                        <div id="actorsshows" class="row"></div>
+                    </div>
                     
-                    <script>actorMovies();</script>
+                    
+                    <script>
+                        actorMovies();
+                        actorTVs();
+                    </script>
                 `;
 
             $("#actor").html(output);
@@ -311,6 +328,7 @@ function getActor() {
 
 }
 
+//indivudal tv page
 function getTV() {
     //Get movie ID from the session storage
     let showId = sessionStorage.getItem("showId");
@@ -384,8 +402,8 @@ function getTV() {
                 output += `
                       <div class="col-md-3">
                         <div class="well text-center">
-                          <img src="https://image.tmdb.org/t/p/w500${show.poster_path}">
-                          <h5>${show.name}</h5>
+                          <img class="poster" src="https://image.tmdb.org/t/p/w500${show.poster_path}">
+                          <h5 class="text">${show.name}</h5>
                           <a onclick="tvSelected('${show.id}')" class="btn btn-primary" href="#">Show Details</a>
                         </div>
                       </div>
@@ -564,6 +582,46 @@ function indexgetPopularTVs(){
 
 }
 
+//Get Popular actors for Index page
+function indexgetPopularActors(){
+
+    //Get the api data
+    axios
+        .get(
+            "https://api.themoviedb.org/3/person/popular?api_key=1350e4528ff8559ef2b0fa6679f97d84&language=en-US&page=1"
+        )
+        .then((response) => {
+            console.log(response);
+            //puts the array of movies into the variable
+            //The slice only shows the first 4 results
+            let indexactors = response.data.results.slice(0,4);
+            let output = "";
+            $.each(indexactors, (index, actor) => {
+                output += `
+                      <!--Puts into the bootstrap column of 4-->
+                      <div class="col-md-4" >
+                        <!--Makes the elements centered per column-->
+                        <div class="well text-center index">
+                          <!--Movie Poster-->
+                          <img class="poster" src="https://image.tmdb.org/t/p/w500${actor.profile_path}">
+                          <!--Movie Title-->
+                          <h5 class="text">${actor.name}</h5>
+                          <!--Movie Details-->
+                          <a onclick="actorSelected('${actor.id}')" class="btn btn-primary" href="#">Actor Details</a>
+                        </div>
+                      </div>
+                    `;
+            });
+            //prints the movies on the div with the class indexactors
+            $('#indexactors').html(output);
+        })
+        .catch(function (error) {
+            console.log(error);
+        });
+
+
+}
+
 //Get TV for TV page
 function getPopularActors(){
 
@@ -677,14 +735,14 @@ function actorMovies(){
         .then((response) => {
             console.log(response);
             //puts the array of movies into the variable
-            let actorsmovies = response.data.cast.slice(0,8);
+            let actorsmovies = response.data.cast.slice(0,4);
             let output = "";
             $.each(actorsmovies, (index, actor) => {
                 output += `
                       <div class="col-md-3">
                         <div class="well text-center">
-                          <img src="https://image.tmdb.org/t/p/w500${actor.poster_path}">
-                          <h5>${actor.title}</h5>
+                          <img class="poster" src="https://image.tmdb.org/t/p/w500${actor.poster_path}">
+                          <h5 class="text">${actor.title}</h5>
                           <a onclick="movieSelected('${actor.id}')" class="btn btn-primary" href="#">Movie Details</a>
                         </div>
                       </div>
@@ -692,6 +750,38 @@ function actorMovies(){
             });
             //prints the movies on the div with the class movies
             $("#actorsmovies").html(output);
+        })
+        .catch((err) => {
+            console.log(err);
+        });
+}
+
+function actorTVs(){
+    let actorId = sessionStorage.getItem("actorId");
+    //axios.get('http://www.omdbapi.com?s='+ searchMovie+'&apikey=48d6917d')
+    axios
+        .get(
+
+            "https://api.themoviedb.org/3/person/"+ actorId + "/tv_credits?api_key=1350e4528ff8559ef2b0fa6679f97d84&language=en-US&page=1"
+        )
+        .then((response) => {
+            console.log(response);
+            //puts the array of movies into the variable
+            let actorsshows = response.data.cast.slice(0,4);
+            let output = "";
+            $.each(actorsshows, (index, actor) => {
+                output += `
+                      <div class="col-md-3">
+                        <div class="well text-center">
+                          <img class="poster" src="https://image.tmdb.org/t/p/w500${actor.poster_path}">
+                          <h5 class="text">${actor.name}</h5>
+                          <a onclick="tvSelected('${actor.id}')" class="btn btn-primary" href="#">Show Details</a>
+                        </div>
+                      </div>
+                    `;
+            });
+            //prints the movies on the div with the class movies
+            $("#actorsshows").html(output);
         })
         .catch((err) => {
             console.log(err);

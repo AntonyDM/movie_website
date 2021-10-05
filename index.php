@@ -32,6 +32,15 @@
                 <div id="indexshows" class="row"</div>
             </div>
 
+            <br>
+
+            <!--Displays current popular actors-->
+            <h3 class="text-center title">Current Popular Actors</h3>
+            <div class="container">
+                <div id="indexactors" class="row"</div>
+            </div>
+
+
             <!--jquery-->
             <script
                     src="https://code.jquery.com/jquery-3.6.0.min.js"
@@ -46,7 +55,8 @@
             <script>
                 indexgetPopularMovies();
                 indexgetPopularTVs();
+                indexgetPopularActors();
             </script>
-
+            <br><br>
         </body>
 </html>

@@ -239,6 +239,12 @@ body {
     display: block;
 }
 
+.biography {
+    padding-left: 5px;
+    padding-top: 40px;
+    display: block;
+}
+
 .trailer {
     display: block;
     float: right;
@@ -263,11 +269,23 @@ body {
 }
 
 .text {
-    padding-top: 30px;
+    padding-top: 20px;
     padding-bottom: 5px;
-    display: block;
     font-size: 18px;
+
+    /*Makes details box level*/
+    height: 90px;
+
+    /*Centering text*/
+    display : flex;
+    align-items : center;
+    justify-content: center;
+
 }
+
+
+
+
 
 .button {
    margin-bottom: 40px;
