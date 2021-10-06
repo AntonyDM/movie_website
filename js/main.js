@@ -290,7 +290,7 @@ function getActor() {
                     <!--Title-->
                     <div class="container">
                         <div class="jumbotron">
-                            <h3 class="text-center related">Related Movies</h3>
+                            <h3 class="text-center related">Movies that ${actor.name} was in</h3>
                         </div>
                     </div>
 
@@ -299,10 +299,12 @@ function getActor() {
                         <div id="actorsmovies" class="row"></div>
                     </div>
                     
+                    <br>
+                    
                     <!--Title-->
                     <div class="container">
                         <div class="jumbotron">
-                            <h3 class="text-center related">Related Shows</h3>
+                            <h3 class="text-center related">TV Shows that ${actor.name} was in</h3>
                         </div>
                     </div>
 
